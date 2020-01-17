@@ -6,6 +6,5 @@
 1.项目构建：Maven<br>
 2.web框架：Springboot<br>
 3.数据库ORM：Mybatis<br>
-4.数据库连接池： Druid<br>
-5.分页插件：PageHelper<br>
-6.数据库：MySql<br>
+4.分页插件：PageHelper<br>
+5.数据库：MySql<br>

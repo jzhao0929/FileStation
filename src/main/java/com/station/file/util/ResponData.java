@@ -3,7 +3,7 @@ package com.station.file.util;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @描述;对返回前端的数据进行封装
+ * @描述：对返回前端的数据进行封装
  * @创建人： 2020-1-14 11:10 企业平台事业部/jzhao1
  */
 public final class ResponData {

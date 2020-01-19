@@ -3,7 +3,7 @@ package com.station.file.controller;
 import com.github.pagehelper.PageInfo;
 import com.station.file.entity.FileEntity;
 import com.station.file.service.serviceInterface.FileServiceInterface;
-import com.station.file.util.Jo;
+import com.station.file.util.ResponData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -36,7 +36,7 @@ public class FileController {
 
     @ResponseBody
     @GetMapping(value = "/getAll")
-    public Jo login(
+    public ResponData login(
             @RequestParam(value="page", required=false, defaultValue="1") int page,
             @RequestParam(value="page-size", required=false, defaultValue="5") int pageSize){
         List<FileEntity> result = fileService.findAllFileEntity(page, pageSize);
@@ -44,12 +44,12 @@ public class FileController {
         PageInfo<FileEntity> pageInfo = new PageInfo<>(result);
         Map<String,Object> map = new HashMap<>();
         map.put("page",pageInfo);
-        return Jo.success().setData(map);
+        return ResponData.success().setData(map);
     }
 
     @ResponseBody
     @RequestMapping("/upload")
-    public Jo upload(MultipartFile fileUpload, HttpServletRequest request) throws IOException {
+    public ResponData upload(MultipartFile fileUpload, HttpServletRequest request) throws IOException {
         //获取文件的原始名
         String fileName = fileUpload.getOriginalFilename();
         //生成文件ID
@@ -58,7 +58,7 @@ public class FileController {
         fileService.transferToService(fileUpload,id,uploadFolder);
         //保存文件信息
         fileService.saveFileEntity(id,fileName,uploadFolder);
-        return Jo.success().setMsg("上传成功！");
+        return ResponData.success().setMsg("上传成功！");
     }
 
     @RequestMapping("/download")

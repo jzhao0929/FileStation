@@ -2,6 +2,8 @@ package com.station.file.repository;
 
 import com.station.file.entity.FileEntity;
 
+import java.util.List;
+
 public interface FileEntityMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,6 @@ public interface FileEntityMapper {
     int updateByPrimaryKeySelective(FileEntity record);
 
     int updateByPrimaryKey(FileEntity record);
+
+    List<FileEntity> selectAllFileEntity();
 }

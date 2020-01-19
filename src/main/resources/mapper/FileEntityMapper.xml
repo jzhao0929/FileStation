@@ -18,6 +18,11 @@
     from file_message
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectAllFileEntity" resultType="com.station.file.entity.FileEntity">
+    select
+    <include refid="Base_Column_List" />
+    from file_message
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from file_message
     where id = #{id,jdbcType=VARCHAR}

@@ -5,6 +5,7 @@ import com.station.file.entity.FileEntity;
 import com.station.file.service.serviceInterface.FileServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.List;
  * @创建人： 2020-1-13 16:47 企业平台事业部/jzhao1
  */
 @Service
+@Transactional
 public class FileService implements FileServiceInterface {
     @Autowired
     private FileDao fileDao;
@@ -53,5 +55,11 @@ public class FileService implements FileServiceInterface {
     @Override
     public FileEntity findFileEntityById(String id) {
         return fileDao.findFileEntityById(id);
+    }
+
+    @Override
+    public List<FileEntity> findFileEntityByTrueName(String trueName){
+        List<FileEntity> list = fileDao.findFileEntityByTrueName(trueName);
+        return list;
     }
 }

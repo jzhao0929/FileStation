@@ -39,4 +39,6 @@ public interface FileServiceInterface {
      * @param uploadFolder
      */
     public void transferToService(MultipartFile fileUpload, String id, String uploadFolder);
+
+    public List<FileEntity> findFileEntityByTrueName(String trueName);
 }

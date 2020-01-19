@@ -29,4 +29,8 @@ public class FileDao {
     public FileEntity findFileEntityById(String id){
         return fileEntityMapper.selectByPrimaryKey(id);
     }
+
+    public  List<FileEntity> findFileEntityByTrueName(String trueName){
+        return fileEntityMapper.findFileEntityByTrueName(trueName);
+    }
 }

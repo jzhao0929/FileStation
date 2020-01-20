@@ -15,7 +15,7 @@ public interface FileServiceInterface {
      * @param pageSize
      * @return
      */
-    public List<FileEntity> findAllFileEntity(int page, int pageSize);
+    List<FileEntity> findAllFileEntity(int page, int pageSize);
 
     /**
      * 保存文件信息
@@ -23,14 +23,14 @@ public interface FileServiceInterface {
      * @param fileName
      * @param absolutePath
      */
-    public void saveFileEntity(String id,String fileName,String absolutePath);
+    void saveFileEntity(String id,String fileName,String absolutePath);
 
     /**
      * 通过ID获取文件信息
      * @param id
      * @return
      */
-    public FileEntity findFileEntityById(String id);
+    FileEntity findFileEntityById(String id);
 
     /**
      * 将文件上传到服务器中，并将id作为文件名以防文件名重名
@@ -38,12 +38,12 @@ public interface FileServiceInterface {
      * @param id
      * @param uploadFolder
      */
-    public void transferToService(MultipartFile fileUpload, String id, String uploadFolder);
+    void transferToService(MultipartFile fileUpload, String id, String uploadFolder);
 
     /**
      * 通过文件名称获取文件信息
      * @param trueName
      * @return
      */
-    public List<FileEntity> findFileEntityByTrueName(String trueName);
+    List<FileEntity> findFileEntityByTrueName(String trueName);
 }

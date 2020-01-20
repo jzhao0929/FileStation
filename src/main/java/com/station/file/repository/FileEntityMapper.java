@@ -2,7 +2,6 @@ package com.station.file.repository;
 
 import com.station.file.entity.FileEntity;
 import org.apache.ibatis.annotations.Select;
-
 import java.util.List;
 
 public interface FileEntityMapper {

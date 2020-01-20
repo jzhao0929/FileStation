@@ -1,5 +1,7 @@
 package com.station.file.entity;
 
+import java.util.Date;
+
 public class FileEntity {
     private String id;
 
@@ -9,11 +11,14 @@ public class FileEntity {
 
     private String type;
 
-    public FileEntity(String id, String trueName, String absolutePath, String type) {
+    private Date uploadTime;
+
+    public FileEntity(String id, String trueName, String absolutePath, String type, Date uploadTime) {
         this.id = id;
         this.trueName = trueName;
         this.absolutePath = absolutePath;
         this.type = type;
+        this.uploadTime = uploadTime;
     }
 
     public FileEntity() {
@@ -50,5 +55,13 @@ public class FileEntity {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public Date getUploadTime() {
+        return uploadTime;
+    }
+
+    public void setUploadTime(Date uploadTime) {
+        this.uploadTime = uploadTime;
     }
 }

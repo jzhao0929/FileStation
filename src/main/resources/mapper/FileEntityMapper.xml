@@ -7,10 +7,11 @@
       <arg column="true_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="absolute_path" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="upload_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, true_name, absolute_path, type
+    id, true_name, absolute_path, type, upload_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -29,9 +30,9 @@
   </delete>
   <insert id="insert" parameterType="com.station.file.entity.FileEntity">
     insert into file_message (id, true_name, absolute_path, 
-      type)
+      type, upload_time)
     values (#{id,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, #{absolutePath,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR})
+      #{type,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.station.file.entity.FileEntity">
     insert into file_message
@@ -48,6 +49,9 @@
       <if test="type != null">
         type,
       </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -61,6 +65,9 @@
       </if>
       <if test="type != null">
         #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -76,6 +83,9 @@
       <if test="type != null">
         type = #{type,jdbcType=VARCHAR},
       </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -83,7 +93,8 @@
     update file_message
     set true_name = #{trueName,jdbcType=VARCHAR},
       absolute_path = #{absolutePath,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR}
+      type = #{type,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

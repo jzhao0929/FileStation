@@ -70,10 +70,12 @@ public class FileController {
         String fileName = fileEntity.getTrueName();
         //获取输入流对象（用于读文件）
         FileInputStream fis = new FileInputStream(new File(realPath));
-        //获取文件后缀
-        String extendFileName = fileName.substring(fileName.lastIndexOf('.'));
-        //动态设置响应类型，根据前台传递文件类型设置响应类型
-        response.setContentType(request.getSession().getServletContext().getMimeType(extendFileName));
+        if(fileName.contains(".")){
+            //获取文件后缀
+            String extendFileName = fileName.substring(fileName.lastIndexOf('.'));
+            //动态设置响应类型，根据前台传递文件类型设置响应类型
+            response.setContentType(request.getSession().getServletContext().getMimeType(extendFileName));
+        }
         //设置响应头,attachment表示以附件的形式下载，inline表示在线打开
         response.setHeader("content-disposition","attachment;fileName="+ URLEncoder.encode(fileName,"UTF-8"));
         //获取输出流对象（用于写文件）

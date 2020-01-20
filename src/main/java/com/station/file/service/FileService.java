@@ -31,10 +31,8 @@ public class FileService implements FileServiceInterface {
     public void saveFileEntity(String id,String fileName,String absolutePath){
         boolean flag = fileName.contains(".");
         String type[] = null;
-        System.out.println(flag);
         StringBuffer sb = new StringBuffer(absolutePath);
         sb.append(File.separator);
-
         FileEntity entity = new FileEntity();
         entity.setId(id);
         entity.setTrueName(fileName);

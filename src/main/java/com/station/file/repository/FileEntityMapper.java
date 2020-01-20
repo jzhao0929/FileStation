@@ -19,6 +19,6 @@ public interface FileEntityMapper {
 
     List<FileEntity> selectAllFileEntity();
 
-    @Select("SELECT * FROM file_message WHERE true_name = #{trueName}")
+    @Select("SELECT * FROM file_message WHERE true_name like concat('%',#{trueName},'%') ")
     List<FileEntity> findFileEntityByTrueName(String trueName);
 }

@@ -40,5 +40,10 @@ public interface FileServiceInterface {
      */
     public void transferToService(MultipartFile fileUpload, String id, String uploadFolder);
 
+    /**
+     * 通过文件名称获取文件信息
+     * @param trueName
+     * @return
+     */
     public List<FileEntity> findFileEntityByTrueName(String trueName);
 }

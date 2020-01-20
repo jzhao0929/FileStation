@@ -86,8 +86,8 @@ public class FileController {
 
     @ResponseBody
     @GetMapping(value = "/findFileEntityByTrueName")
-    public ResponData findFileEntityByTrueName(String name){
-        List<FileEntity> result = fileService.findFileEntityByTrueName(name);
+    public ResponData findFileEntityByTrueName(String trueName){
+        List<FileEntity> result = fileService.findFileEntityByTrueName(trueName);
         // PageInfo包装结果，返回更多分页相关信息
         PageInfo<FileEntity> pageInfo = new PageInfo<>(result);
         Map<String,Object> map = new HashMap<>();

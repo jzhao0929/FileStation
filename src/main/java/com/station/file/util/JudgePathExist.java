@@ -1,5 +1,7 @@
 package com.station.file.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.File;
 
 /**
@@ -7,13 +9,15 @@ import java.io.File;
  * @创建人： 2020-1-21 9:04 企业平台事业部/jzhao1
  */
 public final class JudgePathExist {
+    private static Logger logger = LogManager.getLogger(JudgePathExist.class);
+
     public static void isJudgePathExist(String dirPath) {
         File file =new File(dirPath);
         //如果文件夹不存在则创建
         if (!file.exists() && !file.isDirectory()) {
             file.mkdirs();
         } else {
-            System.out.println("文件服务器目录存在！");
+            logger.error("文件服务器目录存在！");
         }
     }
 }

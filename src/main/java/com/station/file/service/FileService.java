@@ -3,6 +3,7 @@ package com.station.file.service;
 import com.station.file.dao.FileDao;
 import com.station.file.entity.FileEntity;
 import com.station.file.service.serviceInterface.FileServiceInterface;
+import com.station.file.util.JudgePathExist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +62,7 @@ public class FileService implements FileServiceInterface {
             fileName = id;
         }
         try {
+            JudgePathExist.isJudgePathExist(uploadFolder);
             fileUpload.transferTo(new File(uploadFolder,fileName));
         } catch (IOException e) {
             e.printStackTrace();

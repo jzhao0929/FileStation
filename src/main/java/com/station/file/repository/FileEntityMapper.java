@@ -1,9 +1,11 @@
 package com.station.file.repository;
 
 import com.station.file.entity.FileEntity;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
+@Mapper
 public interface FileEntityMapper {
     int deleteByPrimaryKey(String id);
 

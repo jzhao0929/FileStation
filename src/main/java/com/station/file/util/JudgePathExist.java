@@ -20,4 +20,16 @@ public final class JudgePathExist {
             logger.error("文件服务器目录存在！");
         }
     }
+
+    public static boolean isJudgeFileExist(String filePath) {
+        boolean flag = false;
+        File file =new File(filePath);
+        //如果文件夹不存在则创建
+        if (!file.exists() && !file.isDirectory()) {
+            flag = true;
+            logger.error("文件服务器目录存在！");
+        }
+        return flag;
+    }
+
 }

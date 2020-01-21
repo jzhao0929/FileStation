@@ -3,6 +3,7 @@ package com.station.file.controller;
 import com.github.pagehelper.PageInfo;
 import com.station.file.entity.FileEntity;
 import com.station.file.service.serviceInterface.FileServiceInterface;
+import com.station.file.util.JudgePathExist;
 import com.station.file.util.ResponData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -62,11 +63,18 @@ public class FileController {
     }
 
     @RequestMapping("/download")
-    public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ResponData download(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String id = request.getParameter("id");
         FileEntity fileEntity = fileService.findFileEntityById(id);
+        if(fileEntity == null){
+            return ResponData.failed().setMsg("文件Id不存在！");
+        }
         //获取文件的绝对路径
         String realPath = fileEntity.getAbsolutePath();
+        boolean flag = JudgePathExist.isJudgeFileExist(realPath);
+        if(flag){
+            return ResponData.failed().setMsg("文件不存在！");
+        }
         String fileName = fileEntity.getTrueName();
         //获取输入流对象（用于读文件）
         FileInputStream fis = new FileInputStream(new File(realPath));
@@ -82,6 +90,7 @@ public class FileController {
         ServletOutputStream os = response.getOutputStream();
         //下载文件,使用spring框架中的FileCopyUtils工具
         FileCopyUtils.copy(fis,os);
+        return ResponData.success().setMsg("下载成功！");
     }
 
     @ResponseBody

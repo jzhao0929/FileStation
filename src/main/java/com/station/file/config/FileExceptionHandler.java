@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import java.io.IOException;
 
 /**
- * @描述：
+ * @描述：springboot上传文件及文件上传限制大小异常捕获
  * @创建人： 2020-1-21 14:58 企业平台事业部/jzhao1
  */
 @RestControllerAdvice

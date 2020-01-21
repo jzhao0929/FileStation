@@ -27,7 +27,7 @@ public final class JudgePathExist {
         //如果文件夹不存在则创建
         if (!file.exists() && !file.isDirectory()) {
             flag = true;
-            logger.error("文件服务器目录存在！");
+            logger.error("文件不存在！");
         }
         return flag;
     }

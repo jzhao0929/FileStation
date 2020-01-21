@@ -27,15 +27,16 @@ import java.util.UUID;
  * @描述：该类响应前端接口
  * @创建人： 2020-1-13 16:40 企业平台事业部/jzhao1
  */
-@Controller
+@RestController
 @RequestMapping("file")
 public class FileController {
     @Value("${file.uploadFolder}")
     private String uploadFolder;
+    @Value("${spring.servlet.multipart.maxFileSize}")
+    private String fileLimitSize;
     @Resource
     private FileServiceInterface fileService;
 
-    @ResponseBody
     @GetMapping(value = "/getAll")
     public ResponData login(
             @RequestParam(value="page", required=false, defaultValue="1") int page,
@@ -48,7 +49,6 @@ public class FileController {
         return ResponData.success().setData(map);
     }
 
-    @ResponseBody
     @RequestMapping("/upload")
     public ResponData upload(MultipartFile fileUpload, HttpServletRequest request) throws IOException {
         //获取文件的原始名
@@ -93,7 +93,6 @@ public class FileController {
         return ResponData.success().setMsg("下载成功！");
     }
 
-    @ResponseBody
     @GetMapping(value = "/findFileEntityByTrueName")
     public ResponData findFileEntityByTrueName(String trueName){
         List<FileEntity> result = fileService.findFileEntityByTrueName(trueName);
